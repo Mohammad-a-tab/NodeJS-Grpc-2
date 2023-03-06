@@ -7,7 +7,7 @@ message Product {
     string title = 2;
     string price = 3;
 }
-message ProductID { 
+message ProductId { 
     int32 id = 1;
 }
 message ProductList {
