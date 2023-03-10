@@ -1,11 +1,11 @@
-const { ProductGRPC } = require("../../services/product/functions/product.grpc");
+const { ProductController } = require("../controllers/product.controller");
 const router = require("express").Router();
 
-router.get("/list", ProductGRPC.listProduct);
-router.get("/:id", ProductGRPC.getProduct);
-router.post("/create", ProductGRPC.createProduct);
-router.put("/update", ProductGRPC.updateProduct);
-router.delete("/delete/:id", ProductGRPC.deleteProduct);
+router.get("/list", ProductController.getListProduct);
+router.get("/:id", ProductController.getProduct);
+router.post("/create", ProductController.createProduct);
+router.put("/update", ProductController.updateProduct);
+router.delete("/delete/:id", ProductController.deleteProduct);
 
 module.exports = {
     ProductRouter : router
