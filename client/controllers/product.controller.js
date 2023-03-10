@@ -8,11 +8,16 @@ const productServiceURL = "localhost:4001";
 const productClient = new ProductPackage.ProductService(productServiceURL, grpc.credentials.createInsecure());
 
 class ProductController {
-    async getListProduct (req, res, next) {}
-    async getProduct (req, res, next) {}
-    async createProduct (req, res, next) {}
-    async updateProduct (req, res, next) {}
-    async deleteProduct (req, res, next) {}
+    getListProduct (req, res, next) {
+        productClient.listProduct(null, (err, data) => {
+            if(err) return next(err);
+            return res.status(200).json(data); 
+        })
+    }
+    getProduct (req, res, next) {}
+    createProduct (req, res, next) {}
+    updateProduct (req, res, next) {}
+    deleteProduct (req, res, next) {}
 }
 module.exports = {
     ProductController : new ProductController()
