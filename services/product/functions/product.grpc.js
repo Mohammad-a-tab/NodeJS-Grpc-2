@@ -9,7 +9,15 @@ async function listProduct (call, callback) {
     }
 }
 async function getProduct (call, callback) {}
-async function createProduct (call, callback) {}
+async function createProduct (call, callback) {
+    try {
+        const {title, price} = call.request;
+        await ProductModel.create({title, price})
+        callback(null, {status: 'Created'})
+    } catch (error) {
+        callback(error, null);
+    }
+}
 async function updateProduct (call, callback) {}
 async function deleteProduct (call, callback) {}
 
