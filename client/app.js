@@ -25,6 +25,7 @@ app.use( "/api-doc" , swaggerUI.serve , swaggerUI.setup(swaggerJsDoc({
                     url : "http://localhost:4000"
                 }
             ],
+            
         },
         apis : ["./routes/**/*.js"]
     }),

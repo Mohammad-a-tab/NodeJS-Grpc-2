@@ -16,7 +16,15 @@ class ProductController {
     }
     getProduct (req, res, next) {}
     createProduct (req, res, next) {
-        
+        try {
+            const {title, price} = req.body;
+            productClient.createProduct({title, price}, (err, data) => {
+                if(err) return next(err);
+                return res.status(201).json(data); 
+            })
+        } catch (error) {
+            next(error)
+        }
     }
     updateProduct (req, res, next) {}
     deleteProduct (req, res, next) {}
