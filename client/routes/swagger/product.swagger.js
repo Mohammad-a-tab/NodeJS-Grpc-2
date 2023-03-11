@@ -16,16 +16,6 @@
  */
 /**
  * @swagger
- *  /product/list:
- *      get:
- *          tags: [GrpcServer]
- *          summary: Gets a list of Products
- *          responses:
- *              200:
- *                  description: successfully
- */
-/**
- * @swagger
  *  /product/create:
  *      post:
  *          tags: [GrpcServer]
@@ -36,6 +26,31 @@
  *                  application/x-www-form-urlencoded:
  *                      schema:
  *                          $ref: '#/components/schemas/Create-Product'
+ *          responses:
+ *              200:
+ *                  description: successfully
+ */
+/**
+ * @swagger
+ *  /product/list:
+ *      get:
+ *          tags: [GrpcServer]
+ *          summary: Gets a list of Products
+ *          responses:
+ *              200:
+ *                  description: successfully
+ */
+/**
+ * @swagger
+ *  /product/{id}:
+ *      get:
+ *          tags: [GrpcServer]
+ *          summary: Gets a list of Products
+ *          parameters:
+ *              -   in: path
+ *                  required: true
+ *                  name: id
+ *                  type: number
  *          responses:
  *              200:
  *                  description: successfully

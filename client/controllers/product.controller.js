@@ -14,7 +14,13 @@ class ProductController {
             return res.status(200).json(data); 
         })
     }
-    getProduct (req, res, next) {}
+    getProduct (req, res, next) {
+        const {id} = req.params;
+        productClient.getProduct({id}, (err, data) => {
+            if(err) return next(err);
+            return res.status(200).json(data); 
+        })
+    }
     createProduct (req, res, next) {
         try {
             const {title, price} = req.body;

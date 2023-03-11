@@ -8,7 +8,16 @@ async function listProduct (call, callback) {
         callback(error, null);
     }
 }
-async function getProduct (call, callback) {}
+async function getProduct (call, callback) {
+    try {
+        const {id} = call.request;
+        const product = await ProductModel.findOne({id});
+        console.log(product);
+        callback(null, product) 
+    } catch (error) {
+        callback(error, null);
+    }
+}
 async function createProduct (call, callback) {
     try {
         const {title, price} = call.request;
@@ -18,7 +27,13 @@ async function createProduct (call, callback) {
         callback(error, null);
     }
 }
-async function updateProduct (call, callback) {}
+async function updateProduct (call, callback) {
+    try {
+        
+    } catch (error) {
+        callback(error, null)
+    }
+}
 async function deleteProduct (call, callback) {}
 
 module.exports = {
