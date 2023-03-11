@@ -36,7 +36,18 @@ async function updateProduct (call, callback) {
         callback(error, null)
     }
 }
-async function deleteProduct (call, callback) {}
+async function deleteProduct (call, callback) {
+    try {
+        let result
+        const {id} = call.request;
+        const product = await ProductModel.findOne({id})
+        if(product) result =  await ProductModel.deleteOne({id})
+        if(result.deletedCount > 0) callback(null, {status: 'Deleted'})
+        return callback({message: "cannot delete product"}, null)
+    } catch (error) {
+        callback(error, null)
+    }
+}
 
 module.exports = {
     listProduct,
