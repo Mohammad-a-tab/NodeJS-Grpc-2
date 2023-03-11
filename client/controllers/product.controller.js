@@ -51,7 +51,17 @@ class ProductController {
             next(error)
         }
     }
-    deleteProduct (req, res, next) {}
+    deleteProduct (req, res, next) {
+        try {
+            const {id} = req.params;
+            productClient.deleteProduct({id}, (err, data) => {
+                if(err) return next(err);
+                return res.status(201).json(data); 
+            })
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 module.exports = {
     ProductController : new ProductController()

@@ -83,3 +83,18 @@
  *              200:
  *                  description: successfully
  */
+/**
+ * @swagger
+ *  /product/remove/{id}:
+ *      delete:
+ *          tags: [GrpcServer]
+ *          summary: remove a Products
+ *          parameters:
+ *              -   in: path
+ *                  required: true
+ *                  name: id
+ *                  type: number
+ *          responses:
+ *              200:
+ *                  description: successfully
+ */
