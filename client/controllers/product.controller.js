@@ -9,17 +9,25 @@ const productClient = new ProductPackage.ProductService(productServiceURL, grpc.
 
 class ProductController {
     getListProduct (req, res, next) {
-        productClient.listProduct(null, (err, data) => {
-            if(err) return next(err);
-            return res.status(200).json(data); 
-        })
+        try {
+            productClient.listProduct(null, (err, data) => {
+                if(err) return next(err);
+                return res.status(200).json(data); 
+            })
+        } catch (error) {
+            next(error)
+        }
     }
     getProduct (req, res, next) {
-        const {id} = req.params;
-        productClient.getProduct({id}, (err, data) => {
-            if(err) return next(err);
-            return res.status(200).json(data); 
-        })
+        try {
+            const {id} = req.params;
+            productClient.getProduct({id}, (err, data) => {
+                if(err) return next(err);
+                return res.status(200).json(data); 
+            })
+        } catch (error) {
+            next(error)
+        }
     }
     createProduct (req, res, next) {
         try {
@@ -32,7 +40,17 @@ class ProductController {
             next(error)
         }
     }
-    updateProduct (req, res, next) {}
+    updateProduct (req, res, next) {
+        try {
+            const {title, price, id} = req.body;
+            productClient.updateProduct({title, price, id}, (err, data) => {
+                if(err) return next(err);
+                return res.status(201).json(data); 
+            })
+        } catch (error) {
+            next(error)
+        }
+    }
     deleteProduct (req, res, next) {}
 }
 module.exports = {

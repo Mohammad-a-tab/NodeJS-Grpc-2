@@ -12,7 +12,6 @@ async function getProduct (call, callback) {
     try {
         const {id} = call.request;
         const product = await ProductModel.findOne({id});
-        console.log(product);
         callback(null, product) 
     } catch (error) {
         callback(error, null);
@@ -29,7 +28,10 @@ async function createProduct (call, callback) {
 }
 async function updateProduct (call, callback) {
     try {
-        
+        const {id, title, price} = call.request;
+        const product = await ProductModel.findOne({id});
+        if(product) await ProductModel.updateOne({id}, {$set : {title, price}})
+        callback(null, {status: 'Updated'})
     } catch (error) {
         callback(error, null)
     }
