@@ -13,7 +13,7 @@ message BlogId {
 message BlogList {
     repeated Product products = 1;
 }
-message BlogProduct {
+message NewBlog {
     string title = 1;
     string description = 2;
 }
@@ -21,10 +21,10 @@ message Empty{}
 message Result {
     string status = 1;
 } 
-service ProductService {
-    rpc listProduct (Empty) returns (ProductList);
-    rpc getProduct (ProductId) returns (Product);
-    rpc createProduct (NewProduct) returns (Result);
-    rpc updateProduct (Product) returns (Result);
-    rpc deleteProduct (ProductId) returns (Result);
+service BlogService {
+    rpc getlistBlog (Empty) returns (BlogList);
+    rpc getBlog (BlogId) returns (Blog);
+    rpc createBlog (NewBlog) returns (Result);
+    rpc updateBlog (Blog) returns (Result);
+    rpc deleteBlog (BlogId) returns (Result);
 }
