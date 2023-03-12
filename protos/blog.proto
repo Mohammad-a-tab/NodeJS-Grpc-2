@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package BlogPackage;
+
+message Blog {
+    int32 id = 1;
+    string title = 2;
+    string description = 3;
+}
+message BlogId { 
+    int32 id = 1;
+}
+message BlogList {
+    repeated Product products = 1;
+}
+message BlogProduct {
+    string title = 1;
+    string description = 2;
+}
+message Empty{}
+message Result {
+    string status = 1;
+} 
+service ProductService {
+    rpc listProduct (Empty) returns (ProductList);
+    rpc getProduct (ProductId) returns (Product);
+    rpc createProduct (NewProduct) returns (Result);
+    rpc updateProduct (Product) returns (Result);
+    rpc deleteProduct (ProductId) returns (Result);
+}
