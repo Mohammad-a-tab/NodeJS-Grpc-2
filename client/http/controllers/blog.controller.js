@@ -31,22 +31,37 @@ class BlogController {
     }
     createBlog (req, res, next) {
         try {
-            const {title, price} = req.body;
-            blogClient.createBlog({title, price}, (err, data) => {
-                if(err) return next(err);
-                return res.status(201).json(data); 
-            })
+            const {title, text, tags} = req.body;
+            let image =path.join(req.fileUploadPath, req.filename)
+            image = image.replace(/\\/g, "/")
+            if(image) {
+                blogClient.updateBlog({title, text, tags, image}, (err, data) => {
+                    if(err) return next(err);
+                    return res.status(201).json(data); 
+                })
+            }
         } catch (error) {
             next(error)
         }
     }
     updateBlog (req, res, next) {
         try {
-            const {title, price, id} = req.body;
-            blogClient.updateBlog({title, price, id}, (err, data) => {
-                if(err) return next(err);
-                return res.status(201).json(data); 
-            })
+            const {id, title, text, tags} = req.body;
+            let image =path.join(req?.fileUploadPath, req?.filename)
+            image = image.replace(/\\/g, "/")
+            if(image) {
+                blogClient.updateBlog({id, title, text, tags, image}, (err, data) => {
+                    if(err) return next(err);
+                    return res.status(201).json(data); 
+                })
+            }
+            else {
+                blogClient.updateBlog({title, text, tags}, (err, data) => {
+                    if(err) return next(err);
+                    return res.status(201).json(data); 
+                })
+            }
+           
         } catch (error) {
             next(error)
         }
