@@ -19,8 +19,8 @@ async function getBlog (call, callback) {
 }
 async function createBlog (call, callback) {
     try {
-        const {title, price} = call.request;
-        await BlogModel.create({title, price})
+        const {title, text, tags, image} = call.request;
+        await BlogModel.create({title, text, tags, image})
         callback(null, {status: 'Created'})
     } catch (error) {
         callback(error, null);
@@ -28,21 +28,20 @@ async function createBlog (call, callback) {
 }
 async function updateBlog (call, callback) {
     try {
-        const {id, title, price} = call.request;
-        const blog = await BlogModel.findOne({id});
-        if(blog) await BlogModel.updateOne({id}, {$set : {title, price}})
-        callback(null, {status: 'Updated'})
+        const {id, title, text, tags, image = ""} = call.request;
+        await BlogModel.findOne({id});
+        const results =  await BlogModel.updateOne({id}, {$set : {title, text, tags, image}})
+        if(results.modifiedCount > 0) callback(null, {status: 'Updated'})
     } catch (error) {
         callback(error, null)
     }
 }
 async function deleteBlog (call, callback) {
     try {
-        let result
         const {id} = call.request;
-        const blog = await BlogModel.findOne({id})
-        if(blog) result =  await BlogModel.deleteOne({id})
-        if(result.deletedCount > 0) callback(null, {status: 'Deleted'})
+        await BlogModel.findOne({id})
+        const results =  await BlogModel.deleteOne({id})
+        if(results.deletedCount > 0) callback(null, {status: 'Deleted'})
         return callback({message: "cannot delete blog"}, null)
     } catch (error) {
         callback(error, null)
