@@ -5,17 +5,21 @@ package BlogPackage;
 message Blog {
     int32 id = 1;
     string title = 2;
-    string description = 3;
+    string text = 3;
+    string image = 4;
+    repeated string tags = 5;
 }
 message BlogId { 
     int32 id = 1;
 }
 message BlogList {
-    repeated Product products = 1;
+    repeated Blog Blogs = 1;
 }
 message NewBlog {
-    string title = 1;
-    string description = 2;
+    string title = 2;
+    string text = 3;
+    string image = 4;
+    repeated string tags = 5;
 }
 message Empty{}
 message Result {
