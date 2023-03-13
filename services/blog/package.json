@@ -12,6 +12,7 @@
   "dependencies": {
     "@grpc/grpc-js": "^1.8.11",
     "@grpc/proto-loader": "^0.7.5",
-    "mongoose": "^7.0.0"
+    "mongoose": "^7.0.0",
+    "multer": "^1.4.5-lts.1"
   }
 }
