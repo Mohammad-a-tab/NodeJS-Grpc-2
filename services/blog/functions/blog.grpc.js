@@ -2,8 +2,8 @@ const { BlogModel } = require("../model/blog.model")
 
 async function getListBlog (call, callback) {
     try {
-        const products = await ProductModel.find({});
-        callback(null, {products})
+        const blogs = await BlogModel.find({});
+        callback(null, {blogs})
     } catch (error) {
         callback(error, null);
     }
@@ -11,8 +11,8 @@ async function getListBlog (call, callback) {
 async function getBlog (call, callback) {
     try {
         const {id} = call.request;
-        const product = await ProductModel.findOne({id});
-        callback(null, product) 
+        const blog = await BlogModel.findOne({id});
+        callback(null, blog) 
     } catch (error) {
         callback(error, null);
     }
@@ -20,7 +20,7 @@ async function getBlog (call, callback) {
 async function createBlog (call, callback) {
     try {
         const {title, price} = call.request;
-        await ProductModel.create({title, price})
+        await BlogModel.create({title, price})
         callback(null, {status: 'Created'})
     } catch (error) {
         callback(error, null);
@@ -29,8 +29,8 @@ async function createBlog (call, callback) {
 async function updateBlog (call, callback) {
     try {
         const {id, title, price} = call.request;
-        const product = await ProductModel.findOne({id});
-        if(product) await ProductModel.updateOne({id}, {$set : {title, price}})
+        const blog = await BlogModel.findOne({id});
+        if(blog) await BlogModel.updateOne({id}, {$set : {title, price}})
         callback(null, {status: 'Updated'})
     } catch (error) {
         callback(error, null)
@@ -40,10 +40,10 @@ async function deleteBlog (call, callback) {
     try {
         let result
         const {id} = call.request;
-        const product = await ProductModel.findOne({id})
-        if(product) result =  await ProductModel.deleteOne({id})
+        const blog = await BlogModel.findOne({id})
+        if(blog) result =  await BlogModel.deleteOne({id})
         if(result.deletedCount > 0) callback(null, {status: 'Deleted'})
-        return callback({message: "cannot delete product"}, null)
+        return callback({message: "cannot delete blog"}, null)
     } catch (error) {
         callback(error, null)
     }
