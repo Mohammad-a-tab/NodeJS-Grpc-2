@@ -1,11 +1,11 @@
 const grpc = require("@grpc/grpc-js");
 const protoLoader = require("@grpc/proto-loader");
 const path = require("path")
-const blogProtoPath = path.join(__dirname, "..", "..", "protos", "blog.proto");
+const blogProtoPath = path.join(__dirname, "..", "..", "..", "protos", "blog.proto");
 const blogProto = protoLoader.loadSync(blogProtoPath);
 const {BlogPackage}  = grpc.loadPackageDefinition(blogProto);
 const BlogServiceURL = "localhost:4002";
-const blogClient = new BlogPackage.ProductService(BlogServiceURL, grpc.credentials.createInsecure());
+const blogClient = new BlogPackage.BlogService(BlogServiceURL, grpc.credentials.createInsecure());
 
 class BlogController {
     getListBlog (req, res, next) {

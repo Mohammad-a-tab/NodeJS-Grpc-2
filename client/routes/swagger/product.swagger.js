@@ -30,7 +30,7 @@
  * @swagger
  *  /product/add:
  *      post:
- *          tags: [GrpcServer]
+ *          tags: [GrpcServer(Product)]
  *          summary: create a Product
  *          requestBody:
  *              required: true
@@ -46,7 +46,7 @@
  * @swagger
  *  /product/list:
  *      get:
- *          tags: [GrpcServer]
+ *          tags: [GrpcServer(Product)]
  *          summary: Gets a list of Products
  *          responses:
  *              200:
@@ -56,7 +56,7 @@
  * @swagger
  *  /product/{id}:
  *      get:
- *          tags: [GrpcServer]
+ *          tags: [GrpcServer(Product)]
  *          summary: Get a Products
  *          parameters:
  *              -   in: path
@@ -71,7 +71,7 @@
  * @swagger
  *  /product/update:
  *      put:
- *          tags: [GrpcServer]
+ *          tags: [GrpcServer(Product)]
  *          summary: update a Product
  *          requestBody:
  *              required: true
@@ -87,7 +87,7 @@
  * @swagger
  *  /product/remove/{id}:
  *      delete:
- *          tags: [GrpcServer]
+ *          tags: [GrpcServer(Product)]
  *          summary: remove a Products
  *          parameters:
  *              -   in: path

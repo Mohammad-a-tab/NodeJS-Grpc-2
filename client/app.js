@@ -1,6 +1,7 @@
 const { AllRoutes } = require("./routes/index.routes");
 const swaggerUI = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
+const path = require("path");
 const express = require("express");
 const app = express();
 app.use(express.json());

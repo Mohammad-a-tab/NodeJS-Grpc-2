@@ -1,4 +1,4 @@
-const stringToArray = function(...args) {
+const StringToArray = function(...args) {
     return function(req, res, next) {
         const fields = args;
         fields.forEach(field => {

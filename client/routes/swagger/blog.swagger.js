@@ -21,6 +21,9 @@
  *                  tags:
  *                      type: array
  *                      description: the list of tags for example(tag1#tag2#tag_foo)
+ *                  image:
+ *                      type: file
+ *                      description: the index picture of blog
  *          Update-Blog:
  *              type: object
  *              properties:
@@ -44,7 +47,7 @@
  * @swagger
  *  /blog/add:
  *      post:
- *          tags: [GrpcServer]
+ *          tags: [GrpcServer(Blog)]
  *          summary: create a blog
  *          requestBody:
  *              required: true
@@ -60,7 +63,7 @@
  * @swagger
  *  /blog/list:
  *      get:
- *          tags: [GrpcServer]
+ *          tags: [GrpcServer(Blog)]
  *          summary: Gets a list of blogs
  *          responses:
  *              200:
@@ -70,7 +73,7 @@
  * @swagger
  *  /blog/{id}:
  *      get:
- *          tags: [GrpcServer]
+ *          tags: [GrpcServer(Blog)]
  *          summary: Get a blogs
  *          parameters:
  *              -   in: path
@@ -85,7 +88,7 @@
  * @swagger
  *  /blog/update:
  *      put:
- *          tags: [GrpcServer]
+ *          tags: [GrpcServer(Blog)]
  *          summary: update a blog
  *          requestBody:
  *              required: true
@@ -101,7 +104,7 @@
  * @swagger
  *  /blog/remove/{id}:
  *      delete:
- *          tags: [GrpcServer]
+ *          tags: [GrpcServer(Blog)]
  *          summary: remove a blogs
  *          parameters:
  *              -   in: path
