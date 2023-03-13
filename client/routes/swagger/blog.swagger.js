@@ -2,7 +2,7 @@
  * @swagger
  *  components:
  *      schemas:
- *          Create-blog:
+ *          Create-Blog:
  *              type: object
  *              required:
  *                  -   title
@@ -21,7 +21,7 @@
  *                  tags:
  *                      type: array
  *                      description: the list of tags for example(tag1#tag2#tag_foo)
- *          Update-blog:
+ *          Update-Blog:
  *              type: object
  *              properties:
  *                  id:
@@ -42,16 +42,16 @@
  */
 /**
  * @swagger
- *  /blog/create:
+ *  /blog/add:
  *      post:
  *          tags: [GrpcServer]
  *          summary: create a blog
  *          requestBody:
  *              required: true
  *              content:
- *                  application/x-www-form-urlencoded:
+ *                  multipart/form-data:
  *                      schema:
- *                          $ref: '#/components/schemas/Create-blog'
+ *                          $ref: '#/components/schemas/Create-Blog'
  *          responses:
  *              200:
  *                  description: successfully
@@ -90,9 +90,9 @@
  *          requestBody:
  *              required: true
  *              content:
- *                  application/x-www-form-urlencoded:
+ *                  multipart/form-data:
  *                      schema:
- *                          $ref: '#/components/schemas/Update-blog'
+ *                          $ref: '#/components/schemas/Update-Blog'
  *          responses:
  *              200:
  *                  description: successfully

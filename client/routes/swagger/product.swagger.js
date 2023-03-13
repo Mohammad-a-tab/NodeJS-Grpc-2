@@ -28,7 +28,7 @@
  */
 /**
  * @swagger
- *  /product/create:
+ *  /product/add:
  *      post:
  *          tags: [GrpcServer]
  *          summary: create a Product
