@@ -6,16 +6,16 @@ const BlogSchema = new mongoose.Schema({
     image : {type : String, required : true},
     tags : {type : [String] , default : []},
 })
-BlogSchema.pre('save', function(next) {
-    if (this.isNew) {
-      const now = new Date();
-      const timestamp = Math.floor(now.getTime() / 1000);
-      const hexSeconds = timestamp.toString(16);
-      const objectId = mongoose.Types.ObjectId(`${hexSeconds}0000000000000000`);
-      this._id = objectId;
-    }
-    next();
-});
+// BlogSchema.pre('save', function(next) {
+//     if (this.isNew) {
+//       const now = new Date();
+//       const timestamp = Math.floor(now.getTime() / 1000);
+//       const hexSeconds = timestamp.toString(16);
+//       const objectId = mongoose.Types.ObjectId(`${hexSeconds}0000000000000000`);
+//       this._id = objectId;
+//     }
+//     next();
+// });
 module.exports = {
     BlogModel : mongoose.model("blog", BlogSchema)
 }

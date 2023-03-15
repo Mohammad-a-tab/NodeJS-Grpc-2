@@ -32,10 +32,10 @@ class BlogController {
     createBlog (req, res, next) {
         try {
             const {title, text, tags} = req.body;
-            let image =path.join(req.fileUploadPath, req.filename)
-            image = image.replace(/\\/g, "/")
+            const pathImage =path.join(req.body.fileUploadPath, req.body.filename)
+            const image = pathImage.replace(/\\/g, "/")
             if(image) {
-                blogClient.updateBlog({title, text, tags, image}, (err, data) => {
+                blogClient.createBlog({title, text, tags, image}, (err, data) => {
                     if(err) return next(err);
                     return res.status(201).json(data); 
                 })
@@ -47,7 +47,7 @@ class BlogController {
     updateBlog (req, res, next) {
         try {
             const {id, title, text, tags} = req.body;
-            let image =path.join(req?.fileUploadPath, req?.filename)
+            let image =path.join(req.body.fileUploadPath, req.body.filename)
             image = image.replace(/\\/g, "/")
             if(image) {
                 blogClient.updateBlog({id, title, text, tags, image}, (err, data) => {
