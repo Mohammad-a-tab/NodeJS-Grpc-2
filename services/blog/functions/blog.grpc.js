@@ -28,7 +28,7 @@ async function createBlog (call, callback) {
 }
 async function updateBlog (call, callback) {
     try {
-        const {id, title, text, tags, image = ""} = call.request;
+        const {id, title, text, tags, image} = call.request;
         await BlogModel.findOne({id});
         const results =  await BlogModel.updateOne({id}, {$set : {title, text, tags, image}})
         if(results.modifiedCount > 0) callback(null, {status: 'Updated'})
