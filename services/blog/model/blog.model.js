@@ -12,7 +12,6 @@ BlogSchema.plugin(AutoIncrement,{
     id: "blog",
     start_seq: 1,
 })
-
 module.exports = {
     BlogModel : mongoose.model("blog", BlogSchema)
 }

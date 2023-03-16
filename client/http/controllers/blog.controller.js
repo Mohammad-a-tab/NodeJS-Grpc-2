@@ -42,22 +42,21 @@ class BlogController {
             }
         } catch (error) {
             next(error)
-            console.log(error);
         }
     }
     updateBlog (req, res, next) {
         try {
             const {id, title, text, tags} = req.body;
-            const pathImage =path.join(req.body.fileUploadPath, req.body.filename)
-            const image = pathImage.replace(/\\/g, "/")
-            if(image) {
+            if(req.body.fileUploadPath && req.body.filename){
+                const pathImage =path.join(req.body.fileUploadPath, req.body.filename)
+                const image = pathImage.replace(/\\/g, "/")
                 blogClient.updateBlog({id, title, text, tags, image}, (err, data) => {
                     if(err) return next(err);
                     return res.status(201).json(data); 
                 })
             }
             else {
-                blogClient.updateBlog({title, text, tags}, (err, data) => {
+                blogClient.updateBlog({id, title, text, tags}, (err, data) => {
                     if(err) return next(err);
                     return res.status(201).json(data); 
                 })
