@@ -24,6 +24,7 @@ async function createBlog (call, callback) {
         callback(null, {status: 'Created'})
     } catch (error) {
         callback(error, null);
+        console.log(error);
     }
 }
 async function updateBlog (call, callback) {

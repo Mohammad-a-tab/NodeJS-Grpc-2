@@ -42,13 +42,14 @@ class BlogController {
             }
         } catch (error) {
             next(error)
+            console.log(error);
         }
     }
     updateBlog (req, res, next) {
         try {
             const {id, title, text, tags} = req.body;
-            let image =path.join(req.body.fileUploadPath, req.body.filename)
-            image = image.replace(/\\/g, "/")
+            const pathImage =path.join(req.body.fileUploadPath, req.body.filename)
+            const image = pathImage.replace(/\\/g, "/")
             if(image) {
                 blogClient.updateBlog({id, title, text, tags, image}, (err, data) => {
                     if(err) return next(err);
