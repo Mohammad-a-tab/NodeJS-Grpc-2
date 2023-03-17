@@ -1,11 +1,13 @@
+const { deleteFilePublic } = require("../../../services/blog/utils/function");
+const { BlogModel } = require("../../../services/blog/model/blog.model");
 const grpc = require("@grpc/grpc-js");
 const protoLoader = require("@grpc/proto-loader");
-const path = require("path")
 const blogProtoPath = path.join(__dirname, "..", "..", "..", "protos", "blog.proto");
 const blogProto = protoLoader.loadSync(blogProtoPath);
 const {BlogPackage}  = grpc.loadPackageDefinition(blogProto);
 const BlogServiceURL = "localhost:4002";
 const blogClient = new BlogPackage.BlogService(BlogServiceURL, grpc.credentials.createInsecure());
+const path = require("path");
 
 class BlogController {
     getListBlog (req, res, next) {
@@ -34,6 +36,7 @@ class BlogController {
             const {title, text, tags} = req.body;
             const pathImage =path.join(req.body.fileUploadPath, req.body.filename)
             const image = pathImage.replace(/\\/g, "/")
+            req.body.image = image;
             if(image) {
                 blogClient.createBlog({title, text, tags, image}, (err, data) => {
                     if(err) return next(err);
@@ -41,15 +44,19 @@ class BlogController {
                 })
             }
         } catch (error) {
+            deleteFilePublic(req.body?.image)
             next(error)
         }
     }
-    updateBlog (req, res, next) {
+    async updateBlog (req, res, next) {
         try {
             const {id, title, text, tags} = req.body;
             if(req.body.fileUploadPath && req.body.filename){
+                const PathPreviousImage = await BlogModel.findOne({id})
+                deleteFilePublic(PathPreviousImage?.image)
                 const pathImage =path.join(req.body.fileUploadPath, req.body.filename)
                 const image = pathImage.replace(/\\/g, "/")
+                req.body.image = image;
                 blogClient.updateBlog({id, title, text, tags, image}, (err, data) => {
                     if(err) return next(err);
                     return res.status(201).json(data); 
@@ -63,6 +70,7 @@ class BlogController {
             }
            
         } catch (error) {
+            deleteFilePublic(req.body?.image)
             next(error)
         }
     }
