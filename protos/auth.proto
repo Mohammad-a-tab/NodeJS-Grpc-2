@@ -22,3 +22,14 @@ message RegisterResult = {
 message ResetPassword { 
     string phone = 1;
 }
+message Empty{}
+message Result {
+    string status = 1;
+} 
+service BlogService {
+    rpc getotp () returns ();
+    rpc checkOTP () returns (Result);
+    rpc refreshToken () returns (Result);
+    rpc saveUser () returns (Result);
+    rpc updateUser () returns (Result);
+}

@@ -1,18 +1,27 @@
 syntax = "proto3";
 package UserPackage;
 
+message User {
+    int32 id = 1;
+    string firstName = 2;
+    string lastName = 3;
+    string email = 4;
+    string phone = 5;
+}
 message UserList {
-    string firstName = 1;
-    string lastName = 2;
-    string email = 3;
-    string phone = 4;
+    repeated User users = 1;
 }
 message UserId { 
     int32 id = 1;
 }
-message User {
-    string firstName = 1;
-    string lastName = 2;
-    string email = 3;
-    string phone = 4;
+message Empty{}
+message Result {
+    string status = 1;
+} 
+service BlogService {
+    rpc getListOfUser (Empty) returns (UserList);
+    rpc getUser (UserId) returns (User);
+    rpc updateUser (User) returns (Result);
+    rpc deleteBlog (UserId) returns (Result);
 }
+
