@@ -18,7 +18,7 @@ message Empty{}
 message Result {
     string status = 1;
 } 
-service BlogService {
+service UserService {
     rpc getListOfUser (Empty) returns (UserList);
     rpc getUser (UserId) returns (User);
     rpc updateUser (User) returns (Result);

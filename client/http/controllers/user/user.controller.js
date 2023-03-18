@@ -1,15 +1,15 @@
 const grpc = require("@grpc/grpc-js");
 const protoLoader = require("@grpc/proto-loader");
-const authProtoPath = path.join(__dirname, "..", "..", "..", "..", "protos", "user.proto");
-const authProto = protoLoader.loadSync(authProtoPath);
-const {AuthPackage}  = grpc.loadPackageDefinition(authProto);
-const AuthServiceURL = "localhost:4003";
-const authClient = new AuthPackage.AuthService(AuthServiceURL, grpc.credentials.createInsecure());
+const userProtoPath = path.join(__dirname, "..", "..", "..", "..", "protos", "user.proto");
+const userProto = protoLoader.loadSync(userProtoPath);
+const {UserPackage}  = grpc.loadPackageDefinition(userProto);
+const userServiceURL = "localhost:4003";
+const userClient = new UserPackage.UserService(userServiceURL, grpc.credentials.createInsecure());
 const path = require("path");
 
-class AuthController {
+class UserController {
     
 }
 module.exports = {
-    AuthController : new AuthController()
+    UserController : new UserController()
 }

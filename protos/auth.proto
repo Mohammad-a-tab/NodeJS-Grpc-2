@@ -41,11 +41,10 @@ message checkOTPLogin {
 message refreshToken {
     string refreshToken = 1;
 }
-message Empty{}
 message Result {
     string status = 1;
 } 
-service BlogService {
+service AuthService {
     rpc RegisterUser (Register) returns (RegisterResult);
     rpc getotp (Login) returns (OTPNumber);
     rpc checkOTP (checkOTPLogin) returns (LoginResult);
