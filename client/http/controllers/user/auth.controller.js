@@ -8,7 +8,7 @@ const authClient = new AuthPackage.AuthService(AuthServiceURL, grpc.credentials.
 const path = require("path");
 
 class AuthController {
-
+    
 }
 module.exports = {
     AuthController : new AuthController()
