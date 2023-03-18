@@ -21,15 +21,35 @@ message RegisterResult = {
 }
 message ResetPassword { 
     string phone = 1;
+    
+}
+message mobile { 
+    string phone = 1;
+    
+}
+message OTPNumber {
+    int32 code = 1;
+}
+message OTP {
+    int32 code = 1;
+    int32 expiresIn = 2;
+}
+message checkOTPLogin {
+    string phone = 1;
+    int32 code = 2;
+}
+message refreshToken {
+    string refreshToken = 1;
 }
 message Empty{}
 message Result {
     string status = 1;
 } 
 service BlogService {
-    rpc getotp () returns ();
-    rpc checkOTP () returns (Result);
-    rpc refreshToken () returns (Result);
-    rpc saveUser () returns (Result);
-    rpc updateUser () returns (Result);
+    rpc RegisterUser (Register) returns (RegisterResult);
+    rpc getotp (Login) returns (OTPNumber);
+    rpc checkOTP (checkOTPLogin) returns (LoginResult);
+    rpc refreshToken (refreshToken) returns (LoginResult);
+    rpc saveUser (checkOTPLogin) returns (Result);
+    rpc updateUser (mobile, OTP) returns (Result);
 }
