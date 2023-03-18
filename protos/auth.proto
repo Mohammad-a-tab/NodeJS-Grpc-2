@@ -46,7 +46,7 @@ message Result {
 } 
 service AuthService {
     rpc RegisterUser (Register) returns (RegisterResult);
-    rpc getotp (Login) returns (OTPNumber);
+    rpc getOtp (Login) returns (OTPNumber);
     rpc checkOTP (checkOTPLogin) returns (LoginResult);
     rpc refreshToken (refreshToken) returns (LoginResult);
     rpc saveUser (checkOTPLogin) returns (Result);
