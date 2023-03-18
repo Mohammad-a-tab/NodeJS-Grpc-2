@@ -1,5 +1,5 @@
-const { deleteFilePublic } = require("../../../services/blog/utils/function");
-const { BlogModel } = require("../../../services/blog/model/blog.model");
+const { deleteFilePublic } = require("../../../../services/blog/utils/function");
+const { BlogModel } = require("../../../../services/blog/model/blog.model");
 const grpc = require("@grpc/grpc-js");
 const protoLoader = require("@grpc/proto-loader");
 const blogProtoPath = path.join(__dirname, "..", "..", "..", "protos", "blog.proto");
