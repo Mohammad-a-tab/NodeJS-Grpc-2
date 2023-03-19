@@ -1,4 +1,4 @@
-const { BlogController } = require("../http/controllers/blog.controller");
+const { BlogController } = require("../http/controllers/blog/blog.controller");
 const { uploadFileBlog } = require("../../services/blog/utils/multer");
 const { StringToArray } = require("../http/middlewares/StringToArray");
 const router = require("express").Router();

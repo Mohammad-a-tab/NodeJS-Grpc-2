@@ -2,12 +2,12 @@ const { deleteFilePublic } = require("../../../../services/blog/utils/function")
 const { BlogModel } = require("../../../../services/blog/model/blog.model");
 const grpc = require("@grpc/grpc-js");
 const protoLoader = require("@grpc/proto-loader");
+const path = require("path");
 const blogProtoPath = path.join(__dirname, "..", "..", "..", "..", "protos", "blog.proto");
 const blogProto = protoLoader.loadSync(blogProtoPath);
 const {BlogPackage}  = grpc.loadPackageDefinition(blogProto);
 const BlogServiceURL = "localhost:4002";
 const blogClient = new BlogPackage.BlogService(BlogServiceURL, grpc.credentials.createInsecure());
-const path = require("path");
 
 class BlogController {
     getListBlog (req, res, next) {
