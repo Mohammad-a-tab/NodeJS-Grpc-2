@@ -8,6 +8,7 @@ message Login {
 message LoginResult {
     string accessToken = 1;
     string refreshToken = 2;
+    string message = 3;
 }
 
 message ResetPassword { 

@@ -18,7 +18,12 @@ async function getOtp (call, callback) {
 }
 async function checkOTP (call, callback) {
     try {   
-
+        const {phone, code} = call.request;
+        const user = await UserModel.findOne({phone});
+        if(!user) callback(null, {message: "User not found"})
+        if(user.otp.code != code) callback(null, {message: "The code sent is not correct"});
+        const now = Date.now();
+        if(+user.otp.expiresIn < now) callback(null, {message: ("Your code has expired")})
     } catch (error) {
         callback(error, null);
     }

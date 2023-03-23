@@ -21,7 +21,11 @@ class AuthController {
     }
     checkOTP (req, res, next) {
         try {
-            
+            const {phone, code} = req.body;
+            authClient.checkOTP({phone, code}, (err, data) => {
+                if(err) return next(err)
+                return res.status(200).json(data)
+            })
         } catch (error) {
             next(error);
         }

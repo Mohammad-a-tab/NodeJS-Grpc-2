@@ -2,7 +2,7 @@
  * @swagger
  *  components:
  *      schemas:
- *          Authentication:
+ *          get_otp:
  *              type: object
  *              required: 
  *                  -   phone
@@ -14,7 +14,7 @@
  *                  password:
  *                      type: string
  *                      description: the Password
- *          mmd:
+ *          check_otp:
  *              type: object
  *              required: 
  *                  -   phone
@@ -25,7 +25,7 @@
  *                      description: the Phone Number
  *                  code:
  *                      type: string
- *                      description: the Password
+ *                      description: the Code OTP
  */
 /**
  * @swagger
@@ -38,7 +38,7 @@
  *              content:
  *                  application/x-www-form-urlencoded:
  *                      schema:
- *                          $ref: '#/components/schemas/Authentication'
+ *                          $ref: '#/components/schemas/get_otp'
  *          responses:
  *              200:
  *                  description: successfully
@@ -54,7 +54,7 @@
  *              content:
  *                  application/x-www-form-urlencoded:
  *                      schema:
- *                          $ref: '#/components/schemas/Authentication'
+ *                          $ref: '#/components/schemas/check_otp'
  *          responses:
  *              200:
  *                  description: successfully
