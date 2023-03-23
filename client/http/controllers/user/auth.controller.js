@@ -33,20 +33,6 @@ class AuthController {
             next(error);
         }
     }
-    saveUser (req, res, next) {
-        try {
-            
-        } catch (error) {
-            next(error);
-        }
-    }
-    updateUser (req, res, next) {
-        try {
-            
-        } catch (error) {
-            next(error);
-        }
-    }
 }
 module.exports = {
     AuthController : new AuthController()

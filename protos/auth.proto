@@ -39,6 +39,4 @@ service AuthService {
     rpc getOtp (Login) returns (OTPNumber);
     rpc checkOTP (checkOTPLogin) returns (LoginResult);
     rpc refreshToken (refreshToken) returns (LoginResult);
-    rpc saveUser (checkOTPLogin) returns (Result);
-    rpc updateUser (mobile, OTP) returns (Result);
 }

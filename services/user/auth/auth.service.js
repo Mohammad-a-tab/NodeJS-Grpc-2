@@ -5,7 +5,7 @@ const protoPath = path.join(__dirname, "..", "..", "..", "protos","auth.proto");
 const authProto = protoLoader.loadSync(protoPath);
 const {AuthPackage} = grpc.loadPackageDefinition(authProto);
 const AuthServiceURL = "localhost:4003";
-const { getOtp, checkOTP, refreshToken, saveUser, updateUser } = require('./functions/auth.grpc');
+const { getOtp, checkOTP, refreshToken } = require('./functions/auth.grpc');
 const path = require("path");
 
 function main() {
@@ -13,9 +13,7 @@ function main() {
     server.addService(AuthPackage.AuthService.service, {
         getOtp,
         checkOTP,
-        refreshToken,
-        saveUser,
-        updateUser
+        refreshToken
     });
     server.bindAsync(AuthServiceURL, grpc.ServerCredentials.createInsecure(), (err, port) => {
         if(err) return console.log("Error :", err);
