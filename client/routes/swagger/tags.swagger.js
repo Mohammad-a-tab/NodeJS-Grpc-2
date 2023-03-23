@@ -3,6 +3,8 @@
  *   tags:
  *      -   name: GrpcServer(AuthService)
  *          description: action of Running GRPC server (Auth)         
+ *      -   name: GrpcServer(User)
+ *          description: action of Running GRPC server (User)         
  *      -   name: GrpcServer(Product)
  *          description: action of Running GRPC server (Product)
  *      -   name: GrpcServer(Blog)

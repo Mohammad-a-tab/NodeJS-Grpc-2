@@ -30,3 +30,19 @@
  *                      type: string
  *                      description: the Password
  */
+/**
+ * @swagger
+ *  /user/add:
+ *      post:
+ *          tags: [GrpcServer(User)]
+ *          summary: create a user
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/x-www-form-urlencoded:
+ *                      schema:
+ *                          $ref: '#/components/schemas/Create-User'
+ *          responses:
+ *              200:
+ *                  description: successfully
+ */
