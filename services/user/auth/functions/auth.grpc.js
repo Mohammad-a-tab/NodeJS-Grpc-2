@@ -28,15 +28,12 @@ async function refreshToken (call, callback) {
     }
 }
 async function updateUser (code, phone) {
-    try {
-        let otp = {
-            code,
-            expiresIn : (new Date().getTime() + 120000),
-        }
-        return (await UserModel.updateOne({phone}, {$set : otp}))
-    } catch (error) {
-        callback(error, null)
+    let otp = {
+        code,
+        expiresIn : (new Date().getTime() + 120000),
     }
+    console.log(otp)
+    return (await UserModel.updateOne({phone}, {$set : {otp}}))
 }
 
 

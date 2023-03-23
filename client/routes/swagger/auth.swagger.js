@@ -2,7 +2,7 @@
  * @swagger
  *  components:
  *      schemas:
- *          Authorization:
+ *          Authentication:
  *              type: object
  *              required: 
  *                  -   phone
