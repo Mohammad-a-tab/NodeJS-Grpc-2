@@ -4,11 +4,14 @@ const RandomNumberGenerator = require("../../utils/function");
 async function getOtp (call, callback) {
     try {
         const {phone, password} = call.request;
-        const code = RandomNumberGenerator()
-        await UserModel.findOne({phone, password})
-        const result = await updateUser(code, phone)
-        if(!result) return callback(error, null);
-        return callback(null, {code});
+        const user =  await UserModel.findOne({phone, password})
+        if(user) {
+            const code = RandomNumberGenerator()
+            const result = await updateUser(code, phone)
+            if(!result) return callback(null, {code: null, message: "Operation failed"});
+            return callback(null, {code, message: "success"});
+        }
+        return callback(null, {code : null ,message: "Invalid"});
     } catch (error) {
         callback(error, null);
     }
@@ -32,7 +35,6 @@ async function updateUser (code, phone) {
         code,
         expiresIn : (new Date().getTime() + 120000),
     }
-    console.log(otp)
     return (await UserModel.updateOne({phone}, {$set : {otp}}))
 }
 

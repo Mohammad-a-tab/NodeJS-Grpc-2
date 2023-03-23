@@ -20,6 +20,7 @@ message mobile {
 }
 message OTPNumber {
     int32 code = 1;
+    string message = 2;
 }
 message OTP {
     int32 code = 1;
