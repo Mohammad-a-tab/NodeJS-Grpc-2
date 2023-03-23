@@ -10,7 +10,11 @@ const authClient = new AuthPackage.AuthService(AuthServiceURL, grpc.credentials.
 class AuthController {
     getOtp (req, res, next) {
         try {
-            
+            const {phone, password} = req.body;
+            authClient.getOtp({phone, password}, (err, data) => {
+                if(err) return next(err)
+                return res.status(200).json(data)
+            })
         } catch (error) {
             next(error);
         }

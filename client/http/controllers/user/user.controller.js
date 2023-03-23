@@ -13,7 +13,7 @@ class UserController {
             const {firstName, lastName, email, password, phone} = req.body;
             userClient.registerUser({firstName, lastName, email, password, phone}, (err, data) => {
                 if(err) return next(err)
-                return res.status(200).json(data)
+                return res.status(201).json(data)
             })
             
         } catch (error) {
