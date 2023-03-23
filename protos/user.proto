@@ -33,6 +33,6 @@ service UserService {
     rpc registerUser (Register) returns (RegisterResult);
     rpc getUser (UserId) returns (User);
     rpc updateUser (User) returns (Result);
-    rpc deleteBlog (UserId) returns (Result);
+    rpc deleteUser (UserId) returns (Result);
 }
 
