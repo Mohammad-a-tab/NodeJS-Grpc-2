@@ -13,9 +13,9 @@ function main() {
     server.addService(UserPackage.UserService.service, {
         getListOfUser,
         registerUser,
+        getUser,
         updateUser,
-        deleteUser,
-        getUser
+        deleteUser
     });
     server.bindAsync(UserServiceURL, grpc.ServerCredentials.createInsecure(), (err, port) => {
         if(err) return console.log("Error :", err);

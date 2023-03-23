@@ -1,6 +1,10 @@
+const { UserModel } = require("../model/user.model");
+
 async function registerUser (call, callback) {
     try {
-        
+        const {firstName, lastName, email, password, phone} = call.request;
+        await UserModel.create({firstName, lastName, email, password, phone});
+        callback(null, {message: 'successfully registered'})
     } catch (error) {
         callback(error, null)
     }

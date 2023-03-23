@@ -10,6 +10,11 @@ const userClient = new UserPackage.UserService(userServiceURL, grpc.credentials.
 class UserController {
     registerUser (req, res, next) {
         try {
+            const {firstName, lastName, email, password, phone} = req.body;
+            userClient.registerUser({firstName, lastName, email, password, phone}, (err, data) => {
+                if(err) return next(err)
+                return res.status(200).json(data)
+            })
             
         } catch (error) {
             next(error);
