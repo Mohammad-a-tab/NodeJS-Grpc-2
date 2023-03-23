@@ -32,7 +32,7 @@
  *  /auth/get-otp:
  *      post:
  *          tags: [GrpcServer(AuthService)]
- *          summary: Authentication
+ *          summary: get-otp
  *          requestBody:
  *              required: true
  *              content:
@@ -48,7 +48,7 @@
  *  /auth/check-otp:
  *      post:
  *          tags: [GrpcServer(AuthService)]
- *          summary: Authentication
+ *          summary: check_otp
  *          requestBody:
  *              required: true
  *              content:

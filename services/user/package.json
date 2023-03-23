@@ -12,7 +12,10 @@
   "dependencies": {
     "@grpc/grpc-js": "^1.8.12",
     "@grpc/proto-loader": "^0.7.5",
+    "http-errors": "^2.0.0",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.2",
-    "nodemon": "^2.0.21"
+    "nodemon": "^2.0.21",
+    "redis": "^4.6.5"
   }
 }
