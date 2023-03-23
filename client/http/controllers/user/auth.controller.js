@@ -8,13 +8,6 @@ const authClient = new AuthPackage.AuthService(AuthServiceURL, grpc.credentials.
 const path = require("path");
 
 class AuthController {
-    registerUser (req, res, next) {
-        try {
-            
-        } catch (error) {
-            next(error);
-        }
-    }
     getOtp (req, res, next) {
         try {
             

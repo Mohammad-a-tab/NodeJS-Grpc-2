@@ -1,12 +1,5 @@
 const { UserModel } = require("../../model/user.model")
 
-async function registerUser (call, callback) {
-    try {
-
-    } catch (error) {
-        callback(error, null);
-    }
-}
 async function getOtp (call, callback) {
     try {
 
@@ -44,7 +37,6 @@ async function updateUser (call, callback) {
 }
 
 module.exports = {
-    registerUser,
     getOtp,
     checkOTP,
     refreshToken,

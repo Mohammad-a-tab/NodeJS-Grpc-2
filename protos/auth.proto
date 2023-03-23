@@ -1,13 +1,6 @@
 syntax = "proto3";
 package AuthPackage;
 
-message Register {
-    string firstName = 1;
-    string lastName = 2;
-    string email = 3;
-    string phone = 4;
-    string password = 5;
-}
 message Login {
     string phone = 1;
     string password = 2;
@@ -16,9 +9,7 @@ message LoginResult {
     string accessToken = 1;
     string refreshToken = 2;
 }
-message RegisterResult = {
-    string message = 1;
-}
+
 message ResetPassword { 
     string phone = 1;
     
@@ -45,7 +36,6 @@ message Result {
     string status = 1;
 } 
 service AuthService {
-    rpc RegisterUser (Register) returns (RegisterResult);
     rpc getOtp (Login) returns (OTPNumber);
     rpc checkOTP (checkOTPLogin) returns (LoginResult);
     rpc refreshToken (refreshToken) returns (LoginResult);

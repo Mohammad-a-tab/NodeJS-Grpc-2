@@ -8,6 +8,16 @@ message User {
     string email = 4;
     string phone = 5;
 }
+message Register {
+    string firstName = 1;
+    string lastName = 2;
+    string email = 3;
+    string phone = 4;
+    string password = 5;
+}
+message RegisterResult = {
+    string message = 1;
+}
 message UserList {
     repeated User users = 1;
 }
@@ -20,6 +30,7 @@ message Result {
 } 
 service UserService {
     rpc getListOfUser (Empty) returns (UserList);
+    rpc registerUser (Register) returns (RegisterResult);
     rpc getUser (UserId) returns (User);
     rpc updateUser (User) returns (Result);
     rpc deleteBlog (UserId) returns (Result);
