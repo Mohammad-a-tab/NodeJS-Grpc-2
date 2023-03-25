@@ -40,8 +40,24 @@ function SignRefreshToken(userID){
     });
   
 }
+function verifyRefreshToken(token){
+    return new Promise((resolve , reject) => {
+        JWT.verify(token , REFRESH_TOKEN_SECRET_KEY , async (err , payload) => {
+            if(err) reject(createError.Unauthorized("Please log in to your account"));
+            const {phone} = payload || {}
+            const user = await UserModel.findOne({phone} , {password : 0 , otp : 0});
+            if(!user) reject(createError.Unauthorized("User account not found"));
+            const refreshToken = await redisClient.get(String(user?._id || "key-default"));
+            if(!refreshToken) reject(createError.Unauthorized("Login to user account failed"))
+            if(token === refreshToken) return resolve(phone);
+            reject(createError.Unauthorized("Login to user account failed"));
+        });
+        
+    })
+}
 module.exports = {
     RandomNumberGenerator,
     SignAccessToken,
-    SignRefreshToken
+    SignRefreshToken,
+    verifyRefreshToken
 }
