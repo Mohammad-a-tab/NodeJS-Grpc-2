@@ -33,7 +33,7 @@ async function checkOTP (call, callback) {
 }
 async function refreshToken (call, callback) {
     try {
-        const {refreshToken} = req.body;
+        const {refreshToken} = call.request;
         const phone = await verifyRefreshToken(refreshToken);
         const user = await UserModel.findOne({phone});
         const accessToken = await SignAccessToken(user?._id);

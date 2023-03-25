@@ -26,6 +26,14 @@
  *                  code:
  *                      type: string
  *                      description: the Code OTP
+ *          refreshToken:
+ *              type: object
+ *              required: 
+ *                  -   refreshToken
+ *              properties:
+ *                  refreshToken:
+ *                      type: string
+ *                      description: the refreshToken
  */
 /**
  * @swagger
@@ -55,6 +63,22 @@
  *                  application/x-www-form-urlencoded:
  *                      schema:
  *                          $ref: '#/components/schemas/check_otp'
+ *          responses:
+ *              200:
+ *                  description: successfully
+ */
+/**
+ * @swagger
+ *  /auth/refreshToken:
+ *      post:
+ *          tags: [GrpcServer(AuthService)]
+ *          summary: refreshToken
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/x-www-form-urlencoded:
+ *                      schema:
+ *                          $ref: '#/components/schemas/refreshToken'
  *          responses:
  *              200:
  *                  description: successfully
