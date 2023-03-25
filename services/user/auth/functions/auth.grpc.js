@@ -1,4 +1,4 @@
-const { RandomNumberGenerator, SignAccessToken, SignRefreshToken} = require("../../utils/function");
+const { RandomNumberGenerator, SignAccessToken, SignRefreshToken, verifyRefreshToken} = require("../../utils/function");
 const { UserModel } = require("../../model/user.model");
 
 async function getOtp (call, callback) {
@@ -33,7 +33,12 @@ async function checkOTP (call, callback) {
 }
 async function refreshToken (call, callback) {
     try {
-
+        const {refreshToken} = req.body;
+        const phone = await verifyRefreshToken(refreshToken);
+        const user = await UserModel.findOne({phone});
+        const accessToken = await SignAccessToken(user?._id);
+        const newRefreshToken = await SignRefreshToken(user?._id);
+        return callback(null, {accessToken, refreshToken: newRefreshToken, message: "successfully signed"})
     } catch (error) {
         callback(error, null)
     }

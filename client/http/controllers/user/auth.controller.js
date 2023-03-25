@@ -32,7 +32,11 @@ class AuthController {
     }
     refreshToken (req, res, next) {
         try {
-            
+            const {refreshToken} = req.body;
+            authClient.refreshToken({refreshToken}, (err, data) => {
+                if(err) return next(err)
+                return res.status(200).json(data)
+            })
         } catch (error) {
             next(error);
         }

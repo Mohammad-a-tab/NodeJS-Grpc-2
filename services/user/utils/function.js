@@ -52,7 +52,6 @@ function verifyRefreshToken(token){
             if(token === refreshToken) return resolve(phone);
             reject(createError.Unauthorized("Login to user account failed"));
         });
-        
     })
 }
 module.exports = {

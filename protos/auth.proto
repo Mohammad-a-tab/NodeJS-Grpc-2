@@ -10,22 +10,9 @@ message LoginResult {
     string refreshToken = 2;
     string message = 3;
 }
-
-message ResetPassword { 
-    string phone = 1;
-    
-}
-message mobile { 
-    string phone = 1;
-    
-}
 message OTPNumber {
     int32 code = 1;
     string message = 2;
-}
-message OTP {
-    int32 code = 1;
-    int32 expiresIn = 2;
 }
 message checkOTPLogin {
     string phone = 1;
@@ -34,9 +21,6 @@ message checkOTPLogin {
 message refreshToken {
     string refreshToken = 1;
 }
-message Result {
-    string status = 1;
-} 
 service AuthService {
     rpc getOtp (Login) returns (OTPNumber);
     rpc checkOTP (checkOTPLogin) returns (LoginResult);
