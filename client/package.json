@@ -11,7 +11,9 @@
   "dependencies": {
     "@grpc/grpc-js": "^1.8.11",
     "@grpc/proto-loader": "^0.7.5",
+    "@hapi/joi": "^17.1.1",
     "express": "^4.18.2",
+    "http-errors": "^2.0.0",
     "mongoose": "^7.0.1",
     "nodemon": "^2.0.21",
     "swagger-jsdoc": "^6.2.8",
