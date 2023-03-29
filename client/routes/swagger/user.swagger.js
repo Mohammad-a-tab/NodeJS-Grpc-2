@@ -46,3 +46,13 @@
  *              200:
  *                  description: successfully
  */
+/**
+ * @swagger
+ *  /user/list:
+ *      get:
+ *          tags: [GrpcServer(User)]
+ *          summary: Gets a list of User
+ *          responses:
+ *              200:
+ *                  description: successfully
+ */

@@ -2,12 +2,10 @@ syntax = "proto3";
 package UserPackage;
 
 message User {
-    string id = 1;
     string firstName = 2;
     string lastName = 3;
     string email = 4;
     string phone = 5;
-    string password = 6;
 }
 message UserList {
     repeated User users = 1;

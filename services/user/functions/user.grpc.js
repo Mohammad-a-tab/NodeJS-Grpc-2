@@ -11,7 +11,8 @@ async function registerUser (call, callback) {
 }
 async function getListOfUser (call, callback) {
     try {
-        
+        const users = await UserModel.find({});
+        callback(null, {users})
     } catch (error) {
         callback(error, null)
     }

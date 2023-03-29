@@ -49,7 +49,7 @@ class UserController {
         try {
             const {id} = req.params;
             const data = await UserSchema.validateAsync(req.body);
-            userClient.updateUser({data, id}, (err, data) => {
+            userClient.updateUser({...data, id}, (err, data) => {
                 if(err) return next(err)
                 return res.status(200).json(data)
             })
