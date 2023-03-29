@@ -1,15 +1,20 @@
 const { RandomNumberGenerator, SignAccessToken, SignRefreshToken, verifyRefreshToken} = require("../../utils/function");
 const { UserModel } = require("../../model/user.model");
+const { ValidatingPassword } = require("../../../../client/utils/function");
 
 async function getOtp (call, callback) {
     try {
         const {phone, password} = call.request;
-        const user =  await UserModel.findOne({phone, password})
+        const user =  await UserModel.findOne({phone})
         if(user) {
-            const code = RandomNumberGenerator()
-            const result = await updateUser(code, phone)
-            if(!result) return callback(null, {code: null, message: "Operation failed"});
-            return callback(null, {code, message: "success"});
+            const validatePass = await ValidatingPassword(password, user.password)
+            if(validatePass == true) {
+                const code = RandomNumberGenerator()
+                const result = await updateUser(code, phone)
+                if(!result) return callback(null, {code: null, message: "Operation failed"});
+                return callback(null, {code, message: "success"});
+            }
+            return callback(null, {code : null ,message: "Password is wrong"});   
         }
         return callback(null, {code : null ,message: "Invalid"});
     } catch (error) {
