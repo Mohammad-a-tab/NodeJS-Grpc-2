@@ -12,11 +12,12 @@ const userClient = new UserPackage.UserService(userServiceURL, grpc.credentials.
 class UserController {
     async registerUser (req, res, next) {
         try {
-            const {firstName, lastName, email, password, phone} = req.body;
-            const Pass = await hashPassword(password);
-            userClient.registerUser({firstName, lastName, email, password : Pass, phone}, (err, data) => {
+            const data = await UserSchema.validateAsync(req.body)
+            const Pass = await hashPassword(data.password);
+            data.password = Pass
+            userClient.registerUser({...data}, (err, result) => {
                 if(err) return next(err)
-                return res.status(201).json(data)
+                return res.status(201).json(result)
             })
             
         } catch (error) {
