@@ -1,6 +1,7 @@
 const grpc = require("@grpc/grpc-js");
 const protoLoader = require("@grpc/proto-loader");
 const path = require("path");
+const { hashPassword } = require("../../../utils/function");
 const { UserSchema } = require("../../validators/user/user.validator");
 const userProtoPath = path.join(__dirname, "..", "..", "..", "..", "protos", "user.proto");
 const userProto = protoLoader.loadSync(userProtoPath);
@@ -9,10 +10,11 @@ const userServiceURL = "localhost:4004";
 const userClient = new UserPackage.UserService(userServiceURL, grpc.credentials.createInsecure());
 
 class UserController {
-    registerUser (req, res, next) {
+    async registerUser (req, res, next) {
         try {
             const {firstName, lastName, email, password, phone} = req.body;
-            userClient.registerUser({firstName, lastName, email, password, phone}, (err, data) => {
+            const Pass = await hashPassword(password);
+            userClient.registerUser({firstName, lastName, email, password : Pass, phone}, (err, data) => {
                 if(err) return next(err)
                 return res.status(201).json(data)
             })
