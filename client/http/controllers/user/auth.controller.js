@@ -8,7 +8,7 @@ const AuthServiceURL = "localhost:4003";
 const authClient = new AuthPackage.AuthService(AuthServiceURL, grpc.credentials.createInsecure());
 
 class AuthController {
-    getOtp (req, res, next) {
+    async getOtp (req, res, next) {
         try {
             const {phone, password} = req.body;
             authClient.getOtp({phone, password}, (err, data) => {
