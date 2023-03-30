@@ -26,6 +26,7 @@ message RegisterResult {
 message Empty{}
 message Result {
     string status = 1;
+    string message = 1;
 } 
 service UserService {
     rpc getListOfUser (Empty) returns (UserList);
