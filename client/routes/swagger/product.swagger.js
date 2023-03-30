@@ -57,7 +57,7 @@
  *  /product/{id}:
  *      get:
  *          tags: [GrpcServer(Product)]
- *          summary: Get a Products
+ *          summary: Get a Product
  *          parameters:
  *              -   in: path
  *                  required: true
@@ -88,7 +88,7 @@
  *  /product/remove/{id}:
  *      delete:
  *          tags: [GrpcServer(Product)]
- *          summary: remove a Products
+ *          summary: remove a Product
  *          parameters:
  *              -   in: path
  *                  required: true
