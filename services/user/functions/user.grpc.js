@@ -44,10 +44,10 @@ async function deleteUser (call, callback) {
         const {id} = call.request;
         await UserModel.findById({_id: id})
         const result = await UserModel.deleteOne({_id: id})
-        if(result) {
-            callback(null, {message: "successfully deleted"})
+        if(result.deletedCount > 0) {
+            return callback(null, {message: "successfully deleted"})
         }
-        callback(null, {message: "Unsuccessful"})
+        return callback(null, {message: "Unsuccessful"})
     } catch (error) {
         callback(error, null)
     }
