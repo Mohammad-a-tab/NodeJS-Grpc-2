@@ -1,8 +1,8 @@
+const { CreateUserSchema, UpdateUserSchema } = require("../../validators/user/user.validator");
+const { hashPassword } = require("../../../utils/function");
 const grpc = require("@grpc/grpc-js");
 const protoLoader = require("@grpc/proto-loader");
 const path = require("path");
-const { hashPassword } = require("../../../utils/function");
-const { UserSchema } = require("../../validators/user/user.validator");
 const userProtoPath = path.join(__dirname, "..", "..", "..", "..", "protos", "user.proto");
 const userProto = protoLoader.loadSync(userProtoPath);
 const {UserPackage}  = grpc.loadPackageDefinition(userProto);
@@ -12,7 +12,7 @@ const userClient = new UserPackage.UserService(userServiceURL, grpc.credentials.
 class UserController {
     async registerUser (req, res, next) {
         try {
-            const data = await UserSchema.validateAsync(req.body)
+            const data = await CreateUserSchema.validateAsync(req.body)
             const Pass = await hashPassword(data.password);
             data.password = Pass
             userClient.registerUser({...data}, (err, result) => {
@@ -48,10 +48,10 @@ class UserController {
     async updateUser (req, res, next) {
         try {
             const {id} = req.params;
-            const data = await UserSchema.validateAsync(req.body);
-            userClient.updateUser({...data, id}, (err, data) => {
+            const data = await UpdateUserSchema.validateAsync(req.body);
+            userClient.updateUser({...data, id}, (err, result) => {
                 if(err) return next(err)
-                return res.status(200).json(data)
+                return res.status(200).json(result)
             })
         } catch (error) {
             next(error);
